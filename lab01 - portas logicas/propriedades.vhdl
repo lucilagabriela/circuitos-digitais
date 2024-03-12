@@ -73,3 +73,61 @@ begin
 
 
 end architecture main;
+
+
+
+
+
+
+library ieee;
+use ieee.std_logic_1164.all;
+
+-- Entidade
+entity lab1 is
+    port(
+        a, b, c: in bit;
+        post1, post2, post3,
+		  comAdd1, comAdd2,
+		  comMult1, comMult2,
+		  assocAdd1, assocAdd2,
+		  assocMult1, assocMult2,
+		  distribAdd1, distribAdd2,
+		  distribMult1, distribMult2,
+		  morgan1L, morgan1,
+		  morgan2L, morgan2: out bit
+    );
+end lab1;
+
+-- Arquitetura
+architecture main of lab1 is
+
+begin
+-- Postulados
+	post1 <= a or '0';
+	post2 <= a and '1';
+	post3 <= not(not a);
+	
+	comAdd1 <= a or b;
+	comAdd2 <= b or a;
+	
+	comMult1 <= a and b;
+	comMult2 <= b and a;
+	
+	assocAdd1 <= a or (b or c);
+	assocAdd2 <= (a or b) or c;
+	
+	assocMult1 <= a and (b and c);
+	assocMult2 <= (a and b) and c;
+	
+	distribAdd1 <= a and (b or c);
+	distribAdd2 <= (a and b) or (a and c);
+	
+	distribMult1 <= a or (b and c);
+	distribMult2 <= (a or b) and (a or c);
+	
+	morgan1L <= not(a and b);
+	morgan1 <= (not a) or (not b);
+	
+	morgan2L <= not(a or b);
+	morgan2 <= (not a) and (not b);
+end architecture main;
